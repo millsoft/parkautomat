@@ -10,6 +10,9 @@ use PHPUnit\Framework\TestCase;
 class TicketTest extends TestCase
 {
 
+    /**
+     * @covers \M\Parkautomat\Entities\Ticket
+     */
     public function testNewTicket()
     {
         $ticket = new Ticket();
@@ -19,6 +22,9 @@ class TicketTest extends TestCase
         $this->assertNull($ticket->getEnterTime());
     }
 
+    /**
+     * @covers \M\Parkautomat\Entities\EnterGate
+     */
     public function testTicketAfterEnterGate()
     {
         $enterGate = new EnterGate();
@@ -29,6 +35,10 @@ class TicketTest extends TestCase
         $this->assertNotNull($ticket->getEnterTime());
     }
 
+    /**
+     * @covers \M\Parkautomat\Entities\EnterGate
+     * @covers \M\Parkautomat\Entities\ExitGate
+     */
     public function testExitGateUnpaid()
     {
         $enterGate = new EnterGate();
@@ -41,6 +51,9 @@ class TicketTest extends TestCase
 
     }
 
+    /**
+     * @covers \M\Parkautomat\Entities\EnterGate
+     */
     public function testPriceFreshTicket()
     {
         $enterGate = new EnterGate();
@@ -49,6 +62,9 @@ class TicketTest extends TestCase
         $this->assertEquals(0, $checkout->getPriceTotal());
     }
 
+    /**
+     * @covers \M\Parkautomat\Entities\EnterGate
+     */
     public function testPriceOlderTicket()
     {
         $enterGate = new EnterGate();
@@ -73,6 +89,8 @@ class TicketTest extends TestCase
      *
      * @return void
      * @dataProvider payPriceProvider
+     * @covers \M\Parkautomat\Entities\EnterGate
+     * @covers \M\Parkautomat\Entities\Checkout
      */
     public function testPayTicketTooMuch(int $hours, int $payAmount, int $changeAmount)
     {
