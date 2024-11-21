@@ -10,7 +10,9 @@ class ExitGate
 {
     public function openGate(Ticket $ticket): Ticket
     {
-        //TODO: check if paid
+        if ($ticket->isPaid()) {
+            $ticket->setExitTime(new DateTimeImmutable());
+        }
 
         return $ticket;
 

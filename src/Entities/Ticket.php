@@ -11,6 +11,17 @@ class Ticket
     private ?DateTimeImmutable $enterTime = null;
     private ?DateTime $payTime = null;
     private ?DateTimeImmutable $exitTime = null;
+    private bool $isPaid = false;
+
+    public function isPaid(): bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid): void
+    {
+        $this->isPaid = $isPaid;
+    }
 
     public function getTicketId(): ?string
     {

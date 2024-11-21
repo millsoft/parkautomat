@@ -55,6 +55,8 @@ class Checkout
 
         $this->pricePaid += $due - $changeAmount;
 
+        $this->ticket->setIsPaid($this->getPriceDue() === 0);
+
         return $changeAmount;
 
     }

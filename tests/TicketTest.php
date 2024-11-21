@@ -51,6 +51,22 @@ class TicketTest extends TestCase
 
     }
 
+    public function testExitGatePaid()
+    {
+        $enterGate = new EnterGate();
+        $ticket = $enterGate->openGate();
+
+        //pay:
+        $checkout = new Checkout($ticket, new DateTimeImmutable("now +3 hour"));
+        $checkout->pay(3);
+
+        $exitGate = new ExitGate();
+        $returnedTicket = $exitGate->openGate($ticket);
+
+        $this->assertNotNull($returnedTicket->getExitTime());
+
+    }
+
     /**
      * @covers \M\Parkautomat\Entities\EnterGate
      */
