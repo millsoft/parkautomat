@@ -11,9 +11,6 @@ use PHPUnit\Framework\TestCase;
 class EnterGateTest extends TestCase
 {
 
-    /**
-     * @covers \M\Parkautomat\Entities\EnterGate
-     */
     public function testEnterGate()
     {
         $enterGate = new EnterGate();
